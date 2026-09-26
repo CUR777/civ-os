@@ -1,20 +1,118 @@
 # 维基百科主题索引（标题层）
 
-> 按文明OS节点主题定向搜索（每主题5条），作为知识地图/交叉索引参考。
-> 生成方式：zh.wikipedia action=search API，2026-09-27。仅标题层；摘要层按主题选择性追加（见HUB三层判断）。
+> 按文明OS节点主题定向搜索（每词5条），作为知识地图/交叉索引参考。
+> 生成方式：zh.wikipedia action=query list=search API，2026-09-27，节流3s/请求。仅标题层；摘要层按主题选择性追加。
 
-## 节点03（0条）
+## 节点03（23条）
 
+- [OpenAI](https://zh.wikipedia.org/wiki/OpenAI)
+- [东数西算](https://zh.wikipedia.org/wiki/%E4%B8%9C%E6%95%B0%E8%A5%BF%E7%AE%97)
+- [中国超级计算机](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA)
+- [人工智能](https://zh.wikipedia.org/wiki/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD)
+- [分布式自治组织](https://zh.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%87%AA%E6%B2%BB%E7%BB%84%E7%BB%87)
+- [分布式计算](https://zh.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97)
+- [分布式计算平台](https://zh.wikipedia.org/wiki/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97%E5%B9%B3%E5%8F%B0)
+- [前沿 (超級電腦)](https://zh.wikipedia.org/wiki/%E5%89%8D%E6%B2%BF%20%28%E8%B6%85%E7%B4%9A%E9%9B%BB%E8%85%A6%29)
+- [并行计算](https://zh.wikipedia.org/wiki/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97)
+- [普适计算](https://zh.wikipedia.org/wiki/%E6%99%AE%E9%80%82%E8%AE%A1%E7%AE%97)
+- [深度求索](https://zh.wikipedia.org/wiki/%E6%B7%B1%E5%BA%A6%E6%B1%82%E7%B4%A2)
+- [生成式人工智慧](https://zh.wikipedia.org/wiki/%E7%94%9F%E6%88%90%E5%BC%8F%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7)
+- [电子计算机](https://zh.wikipedia.org/wiki/%E7%94%B5%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA)
+- [矿池](https://zh.wikipedia.org/wiki/%E7%9F%BF%E6%B1%A0)
+- [算力](https://zh.wikipedia.org/wiki/%E7%AE%97%E5%8A%9B)
+- [計算機工程](https://zh.wikipedia.org/wiki/%E8%A8%88%E7%AE%97%E6%A9%9F%E5%B7%A5%E7%A8%8B)
+- [超级计算机](https://zh.wikipedia.org/wiki/%E8%B6%85%E7%BA%A7%E8%AE%A1%E7%AE%97%E6%9C%BA)
+- [通用人工智慧](https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E6%85%A7)
+- [量子位元](https://zh.wikipedia.org/wiki/%E9%87%8F%E5%AD%90%E4%BD%8D%E5%85%83)
+- [量子信息](https://zh.wikipedia.org/wiki/%E9%87%8F%E5%AD%90%E4%BF%A1%E6%81%AF)
+- [量子演算法](https://zh.wikipedia.org/wiki/%E9%87%8F%E5%AD%90%E6%BC%94%E7%AE%97%E6%B3%95)
+- [量子计算优越性](https://zh.wikipedia.org/wiki/%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E4%BC%98%E8%B6%8A%E6%80%A7)
+- [量子计算机](https://zh.wikipedia.org/wiki/%E9%87%8F%E5%AD%90%E8%AE%A1%E7%AE%97%E6%9C%BA)
 
-## 节点09（0条）
+## 节点09（25条）
 
+- [DNA纳米技术](https://zh.wikipedia.org/wiki/DNA%E7%BA%B3%E7%B1%B3%E6%8A%80%E6%9C%AF)
+- [IGEM](https://zh.wikipedia.org/wiki/IGEM)
+- [合成生物学](https://zh.wikipedia.org/wiki/%E5%90%88%E6%88%90%E7%94%9F%E7%89%A9%E5%AD%A6)
+- [合成生物学海河实验室](https://zh.wikipedia.org/wiki/%E5%90%88%E6%88%90%E7%94%9F%E7%89%A9%E5%AD%A6%E6%B5%B7%E6%B2%B3%E5%AE%9E%E9%AA%8C%E5%AE%A4)
+- [基因工程](https://zh.wikipedia.org/wiki/%E5%9F%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B)
+- [基因工程历史](https://zh.wikipedia.org/wiki/%E5%9F%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B%E5%8E%86%E5%8F%B2)
+- [基因工程药物](https://zh.wikipedia.org/wiki/%E5%9F%BA%E5%9B%A0%E5%B7%A5%E7%A8%8B%E8%8D%AF%E7%89%A9)
+- [太空移民](https://zh.wikipedia.org/wiki/%E5%A4%AA%E7%A9%BA%E7%A7%BB%E6%B0%91)
+- [宇宙殖民地](https://zh.wikipedia.org/wiki/%E5%AE%87%E5%AE%99%E6%AE%96%E6%B0%91%E5%9C%B0)
+- [技术融合](https://zh.wikipedia.org/wiki/%E6%8A%80%E6%9C%AF%E8%9E%8D%E5%90%88)
+- [星艦奇航記](https://zh.wikipedia.org/wiki/%E6%98%9F%E8%89%A6%E5%A5%87%E8%88%AA%E8%A8%98)
+- [星际旅行VI：未来之城](https://zh.wikipedia.org/wiki/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8CVI%EF%BC%9A%E6%9C%AA%E6%9D%A5%E4%B9%8B%E5%9F%8E)
+- [星际旅行：航海家号每集列表](https://zh.wikipedia.org/wiki/%E6%98%9F%E9%99%85%E6%97%85%E8%A1%8C%EF%BC%9A%E8%88%AA%E6%B5%B7%E5%AE%B6%E5%8F%B7%E6%AF%8F%E9%9B%86%E5%88%97%E8%A1%A8)
+- [星际迷航 (电影)](https://zh.wikipedia.org/wiki/%E6%98%9F%E9%99%85%E8%BF%B7%E8%88%AA%20%28%E7%94%B5%E5%BD%B1%29)
+- [星際旅行](https://zh.wikipedia.org/wiki/%E6%98%9F%E9%9A%9B%E6%97%85%E8%A1%8C)
+- [月球殖民](https://zh.wikipedia.org/wiki/%E6%9C%88%E7%90%83%E6%AE%96%E6%B0%91)
+- [漢字基因](https://zh.wikipedia.org/wiki/%E6%BC%A2%E5%AD%97%E5%9F%BA%E5%9B%A0)
+- [火星殖民](https://zh.wikipedia.org/wiki/%E7%81%AB%E6%98%9F%E6%AE%96%E6%B0%91)
+- [生物学](https://zh.wikipedia.org/wiki/%E7%94%9F%E7%89%A9%E5%AD%A6)
+- [生物工程学](https://zh.wikipedia.org/wiki/%E7%94%9F%E7%89%A9%E5%B7%A5%E7%A8%8B%E5%AD%A6)
+- [纳米](https://zh.wikipedia.org/wiki/%E7%BA%B3%E7%B1%B3)
+- [纳米技术](https://zh.wikipedia.org/wiki/%E7%BA%B3%E7%B1%B3%E6%8A%80%E6%9C%AF)
+- [纳米材料](https://zh.wikipedia.org/wiki/%E7%BA%B3%E7%B1%B3%E6%9D%90%E6%96%99)
+- [药物](https://zh.wikipedia.org/wiki/%E8%8D%AF%E7%89%A9)
+- [金星殖民](https://zh.wikipedia.org/wiki/%E9%87%91%E6%98%9F%E6%AE%96%E6%B0%91)
 
-## 节点10（0条）
+## 节点10（17条）
 
+- [Anthropic](https://zh.wikipedia.org/wiki/Anthropic)
+- [Meta Platforms](https://zh.wikipedia.org/wiki/Meta%20Platforms)
+- [Muse Spark](https://zh.wikipedia.org/wiki/Muse%20Spark)
+- [Scale AI](https://zh.wikipedia.org/wiki/Scale%20AI)
+- [中国人工智能产业](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E4%BA%A7%E4%B8%9A)
+- [丹妮拉·阿莫迪](https://zh.wikipedia.org/wiki/%E4%B8%B9%E5%A6%AE%E6%8B%89%C2%B7%E9%98%BF%E8%8E%AB%E8%BF%AA)
+- [人工智能](https://zh.wikipedia.org/wiki/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD)
+- [人工智能安全](https://zh.wikipedia.org/wiki/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AE%89%E5%85%A8)
+- [人工智能对齐](https://zh.wikipedia.org/wiki/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%B9%E9%BD%90)
+- [奇点](https://zh.wikipedia.org/wiki/%E5%A5%87%E7%82%B9)
+- [奇点更近](https://zh.wikipedia.org/wiki/%E5%A5%87%E7%82%B9%E6%9B%B4%E8%BF%91)
+- [奇点理论](https://zh.wikipedia.org/wiki/%E5%A5%87%E7%82%B9%E7%90%86%E8%AE%BA)
+- [奇点迫近](https://zh.wikipedia.org/wiki/%E5%A5%87%E7%82%B9%E8%BF%AB%E8%BF%91)
+- [對齊研究中心](https://zh.wikipedia.org/wiki/%E5%B0%8D%E9%BD%8A%E7%A0%94%E7%A9%B6%E4%B8%AD%E5%BF%83)
+- [技术奇点](https://zh.wikipedia.org/wiki/%E6%8A%80%E6%9C%AF%E5%A5%87%E7%82%B9)
+- [超智能](https://zh.wikipedia.org/wiki/%E8%B6%85%E6%99%BA%E8%83%BD)
+- [通用人工智能的生存风险](https://zh.wikipedia.org/wiki/%E9%80%9A%E7%94%A8%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%9A%84%E7%94%9F%E5%AD%98%E9%A3%8E%E9%99%A9)
 
-## 节点14（0条）
+## 节点14（18条）
 
+- [中华人民共和国](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD)
+- [信号 (信息论)](https://zh.wikipedia.org/wiki/%E4%BF%A1%E5%8F%B7%20%28%E4%BF%A1%E6%81%AF%E8%AE%BA%29)
+- [信息](https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF)
+- [信息论](https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA)
+- [基地组织](https://zh.wikipedia.org/wiki/%E5%9F%BA%E5%9C%B0%E7%BB%84%E7%BB%87)
+- [复杂系统](https://zh.wikipedia.org/wiki/%E5%A4%8D%E6%9D%82%E7%B3%BB%E7%BB%9F)
+- [复杂适应系统](https://zh.wikipedia.org/wiki/%E5%A4%8D%E6%9D%82%E9%80%82%E5%BA%94%E7%B3%BB%E7%BB%9F)
+- [嵌入式系统](https://zh.wikipedia.org/wiki/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%B3%BB%E7%BB%9F)
+- [涌现](https://zh.wikipedia.org/wiki/%E6%B6%8C%E7%8E%B0)
+- [湧現論](https://zh.wikipedia.org/wiki/%E6%B9%A7%E7%8F%BE%E8%AB%96)
+- [熵 (信息论)](https://zh.wikipedia.org/wiki/%E7%86%B5%20%28%E4%BF%A1%E6%81%AF%E8%AE%BA%29)
+- [算法信息论](https://zh.wikipedia.org/wiki/%E7%AE%97%E6%B3%95%E4%BF%A1%E6%81%AF%E8%AE%BA)
+- [系統](https://zh.wikipedia.org/wiki/%E7%B3%BB%E7%B5%B1)
+- [自发秩序](https://zh.wikipedia.org/wiki/%E8%87%AA%E5%8F%91%E7%A7%A9%E5%BA%8F)
+- [自我組織](https://zh.wikipedia.org/wiki/%E8%87%AA%E6%88%91%E7%B5%84%E7%B9%94)
+- [自组织临界性](https://zh.wikipedia.org/wiki/%E8%87%AA%E7%BB%84%E7%BB%87%E4%B8%B4%E7%95%8C%E6%80%A7)
+- [自组织映射](https://zh.wikipedia.org/wiki/%E8%87%AA%E7%BB%84%E7%BB%87%E6%98%A0%E5%B0%84)
+- [香港](https://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF)
 
-## 节点16（0条）
+## 节点16（15条）
 
+- [中國](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9C%8B)
+- [古希腊](https://zh.wikipedia.org/wiki/%E5%8F%A4%E5%B8%8C%E8%85%8A)
+- [四大文明古国](https://zh.wikipedia.org/wiki/%E5%9B%9B%E5%A4%A7%E6%96%87%E6%98%8E%E5%8F%A4%E5%9B%BD)
+- [大爆炸](https://zh.wikipedia.org/wiki/%E5%A4%A7%E7%88%86%E7%82%B8)
+- [宇宙学](https://zh.wikipedia.org/wiki/%E5%AE%87%E5%AE%99%E5%AD%A6)
+- [宇宙學常數](https://zh.wikipedia.org/wiki/%E5%AE%87%E5%AE%99%E5%AD%B8%E5%B8%B8%E6%95%B8)
+- [文明](https://zh.wikipedia.org/wiki/%E6%96%87%E6%98%8E)
+- [文明论概略](https://zh.wikipedia.org/wiki/%E6%96%87%E6%98%8E%E8%AE%BA%E6%A6%82%E7%95%A5)
+- [热力学第二定律](https://zh.wikipedia.org/wiki/%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E4%BA%8C%E5%AE%9A%E5%BE%8B)
+- [热力学第零定律](https://zh.wikipedia.org/wiki/%E7%83%AD%E5%8A%9B%E5%AD%A6%E7%AC%AC%E9%9B%B6%E5%AE%9A%E5%BE%8B)
+- [热寂](https://zh.wikipedia.org/wiki/%E7%83%AD%E5%AF%82)
+- [熵](https://zh.wikipedia.org/wiki/%E7%86%B5)
+- [物理宇宙学](https://zh.wikipedia.org/wiki/%E7%89%A9%E7%90%86%E5%AE%87%E5%AE%99%E5%AD%A6)
+- [膜宇宙學](https://zh.wikipedia.org/wiki/%E8%86%9C%E5%AE%87%E5%AE%99%E5%AD%B8)
+- [膨胀宇宙的未来](https://zh.wikipedia.org/wiki/%E8%86%A8%E8%83%80%E5%AE%87%E5%AE%99%E7%9A%84%E6%9C%AA%E6%9D%A5)
 
