@@ -108,7 +108,7 @@ def main():
     candidates = [Path(HUB_FILE)]
     nodes_path = Path(NODES_DIR)
     if nodes_path.exists():
-        candidates += sorted(nodes_path.glob("*.md"))
+        candidates += sorted(nodes_path.rglob("*.md"))
 
     print(f"[扫描] 共{len(candidates)}个文件")
 
