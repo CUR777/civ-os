@@ -30,7 +30,7 @@ def split_node(node_num):
     for i, (title_line, body) in enumerate(matches_sub, 1):
         title_text = re.sub(r'^#{2,3}\s*', '', title_line).strip()
         name_part = re.sub(r'子节点[\d-]+[：:]', '', title_text).strip()
-        name_clean = re.sub(r'[^\w\u4e00-\u9fff]', '-', name_part)[:20].strip('-')
+        name_clean = re.sub(r'[^\w\u4e00-\u9fff]', '-', name_part)[:30].strip('-')
         filename = f'子节点{node_num}-{str(i).zfill(2)}-{name_clean}.md'
         filepath = sub_dir / filename
 
