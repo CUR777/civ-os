@@ -47,7 +47,8 @@ def call_model(system_prompt, user_content):
 
 
 def has_comments(content):
-    return "> 💬 " in content
+    # 行首匹配（真实评论均以「> 💬 」起行）；避免主页/README参与说明中的内联示例 `> 💬 …` 误触发每轮白烧模型调用
+    return any(line.startswith("> \U0001f4ac ") or line.rstrip() == "> \U0001f4ac" for line in content.splitlines())
 
 
 def git_commit(message):
