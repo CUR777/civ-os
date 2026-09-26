@@ -55,6 +55,19 @@ def call_model(system_prompt, user_content):
     return resp.json()["choices"][0]["message"]["content"]
 
 
+def get_immutable_core():
+    """提取 system-prompt 不可变核心区（IMMUTABLE CORE 与 ITERABLE LAYER 标记之间）内容"""
+    try:
+        t = Path(PROMPT_FILE).read_text(encoding="utf-8")
+    except Exception:
+        return None
+    start = t.find('IMMUTABLE CORE')
+    end = t.find('ITERABLE LAYER')
+    if start == -1 or end == -1:
+        return None
+    return t[start:end]
+
+
 def has_comments(content):
     # 行首匹配（真实评论均以「> 💬 」起行）；避免主页/README参与说明中的内联示例 `> 💬 …` 误触发每轮白烧模型调用
     return any(line.startswith("> \U0001f4ac ") or line.rstrip() == "> \U0001f4ac" for line in content.splitlines())
@@ -111,6 +124,7 @@ def main():
     print(f"{'='*60}\n")
 
     system_prompt = read_file(PROMPT_FILE)
+    core_snapshot = get_immutable_core()  # 不可变核心区快照（防迭代旁路污染）
     changed_files = []
 
     # 收集所有需要处理的文件（主页+nodes/下所有.md）
@@ -154,6 +168,11 @@ def main():
         print(" ✅ 处理完成")
 
     if changed_files:
+        # 不可变核心区守卫：提交前复核 system-prompt 标记区内容与启动快照一致
+        if core_snapshot is not None and get_immutable_core() != core_snapshot:
+            print(" ❌ 守卫触发：system-prompt 不可变核心区在本轮迭代中被改动，已回滚该文件，提交中止")
+            subprocess.run(["git", "checkout", "--", PROMPT_FILE], capture_output=True)
+            sys.exit(1)
         print(f"\n[提交] {len(changed_files)}个文件已更新")
         git_commit(f"迭代 {ts}")
         git_push()
