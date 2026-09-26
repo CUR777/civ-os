@@ -41,6 +41,36 @@ def activate(text: str) -> str:
     return resp.json()["choices"][0]["message"]["content"]
 
 
+
+def activate_chunked(text: str, chunk_size: int = 3000) -> str:
+    """对长文本分块激发，合并结果"""
+    paragraphs = text.split('\n\n')
+    chunks = []
+    current_chunk = []
+    current_size = 0
+    for para in paragraphs:
+        para_size = len(para)
+        if current_size + para_size > chunk_size and current_chunk:
+            chunks.append('\n\n'.join(current_chunk))
+            current_chunk = [para]
+            current_size = para_size
+        else:
+            current_chunk.append(para)
+            current_size += para_size
+    if current_chunk:
+        chunks.append('\n\n'.join(current_chunk))
+
+    print(f" 分块模式：{len(chunks)}块（总{len(text)}字符）")
+    results = []
+    for i, chunk in enumerate(chunks):
+        if len(chunk.strip()) < 50:
+            continue
+        print(f" 处理第{i+1}/{len(chunks)}块...", flush=True)
+        result = activate(chunk)
+        results.append(result)
+    return '\n'.join(results)
+
+
 def main():
     if len(sys.argv) < 2:
         print("用法: python3 semantic_activate.py <输入文件> [目标节点文件]")
@@ -57,7 +87,7 @@ def main():
     print(f"输入文件: {src.name} ({len(content)}字符)")
     print("开始全量语义激发...")
 
-    result = activate(content)
+    result = activate_chunked(content) if len(content) > 6000 else activate(content)
 
     if len(sys.argv) >= 3:
         # 追加到目标节点文件
