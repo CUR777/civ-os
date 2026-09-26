@@ -135,10 +135,6 @@ def main():
 
     # 6. 写入新版本 + git commit
     print(f"\n[5/5] 写入新版本并提交...")
-    # 程序化格式后处理：去除首部多余空行，确保末尾有且只有一个换行符
-    new_content = new_content.lstrip('\n')  # 去掉开头所有多余空行
-    new_content = new_content.rstrip('\n') + '\n'  # 末尾保留且只保留一个换行
-    print(" ✓ 格式后处理完成（首部空行已清理，末尾换行已规范）")
     write_file(MAIN_FILE, new_content)
     git_commit(f"迭代 {timestamp}")
 
