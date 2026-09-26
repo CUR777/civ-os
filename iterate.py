@@ -29,6 +29,15 @@ def write_file(path, content):
     Path(path).write_text(content, encoding="utf-8")
 
 
+def generate_timestamps():
+    """生成ISO时间戳和宿主风格版本标识（created_at用UTC毫秒Z；version_tag用北京时间+08:00）"""
+    from datetime import datetime, timezone, timedelta
+    now_utc = datetime.now(timezone.utc)
+    ts_iso = now_utc.strftime('%Y-%m-%dT%H:%M:%S.') + f'{now_utc.microsecond // 1000:03d}Z'
+    ts_ver = datetime.now(timezone(timedelta(hours=8))).strftime('V%Y%m%d%H%M%S+')
+    return ts_iso, ts_ver
+
+
 def call_model(system_prompt, user_content):
     # OpenAI兼容字段（sglang端点不识别Ollama的options段，必须用max_tokens/temperature顶层字段）
     payload = {
