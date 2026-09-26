@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .aider*
 .env
+
+*.bak.*
+.backups/
