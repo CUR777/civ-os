@@ -5,6 +5,7 @@
 """
 
 import requests, json, subprocess, sys, os, re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime
 from pathlib import Path
 
@@ -125,7 +126,15 @@ def main():
 
     system_prompt = read_file(PROMPT_FILE)
     core_snapshot = get_immutable_core()  # 不可变核心区快照（防迭代旁路污染）
-    changed_files = []
+
+    # 并行模式（--parallel N 启用，默认串行；共用 sglang 4并发吞吐上限≈600TPS 聚合）
+    parallel = 1
+    if '--parallel' in sys.argv:
+        try:
+            parallel = max(2, int(sys.argv[sys.argv.index('--parallel') + 1]))
+        except (IndexError, ValueError):
+            parallel = 3
+        print(f" 并行模式：{parallel} 个工作线程")
 
     # 收集所有需要处理的文件（主页+nodes/下所有.md）
     candidates = [Path(HUB_FILE)]
@@ -135,37 +144,44 @@ def main():
 
     print(f"[扫描] 共{len(candidates)}个文件")
 
-    for fpath in candidates:
+    def process_file(fpath):
+        """单文件完整处理流程；返回 (更新路径|None, 日志行)。写回各自文件，线程安全。"""
         content = read_file(str(fpath))
         if not has_comments(content):
-            print(f"  跳过（无评论）: {fpath.name}")
-            continue
-
-        print(f"\n[处理] {fpath.name} （{len(content.encode())}字节）")
-        # 备份
-        backup = Path(ITERATIONS_DIR) / f"{fpath.stem}_{ts}.md"
+            return None, f"  跳过（无评论）: {fpath.name}"
+        ts_inner = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+        backup = Path(ITERATIONS_DIR) / f"{fpath.stem}_{ts_inner}.md"
         write_file(str(backup), content)
-
-        # 调用模型
-        print("  调用模型...")
         try:
             new_content = call_model(system_prompt, content)
         except Exception as e:
-            print(f" ❌ 模型调用失败: {e}")
-            continue
-
-        # 校验
+            return None, f" ❌ 模型调用失败: {fpath.name}: {e}"
         if not validate(new_content, str(fpath)):
-            err_path = Path(ITERATIONS_DIR) / f"failed_{fpath.stem}_{ts}.md"
+            err_path = Path(ITERATIONS_DIR) / f"failed_{fpath.stem}_{ts_inner}.md"
             write_file(str(err_path), new_content)
-            print("  校验失败，跳过此文件，原文件保持不变")
-            continue
+            return None, f" ⚠️ 校验失败，原文件保持不变: {fpath.name}"
+        if len(new_content.encode('utf-8')) < len(content.encode('utf-8')) * 0.5:
+            err_path = Path(ITERATIONS_DIR) / f"failed_{fpath.stem}_{ts_inner}.md"
+            write_file(str(err_path), new_content)
+            return None, f" ⚠️ 体积缩水超半，原文件保持不变: {fpath.name}"
+        write_file(str(fpath), format_fix(new_content))
+        return str(fpath), f" ✅ 处理完成: {fpath.name}"
 
-        # 格式修正
-        new_content = format_fix(new_content)
-        write_file(str(fpath), new_content)
-        changed_files.append(str(fpath))
-        print(" ✅ 处理完成")
+    changed_files = []
+    if parallel > 1:
+        with ThreadPoolExecutor(max_workers=parallel) as executor:
+            futures = {executor.submit(process_file, f): f for f in candidates}
+            for future in as_completed(futures):
+                path, msg = future.result()
+                print(msg, flush=True)
+                if path:
+                    changed_files.append(path)
+    else:
+        for fpath in candidates:
+            path, msg = process_file(fpath)
+            print(msg, flush=True)
+            if path:
+                changed_files.append(path)
 
     if changed_files:
         # 不可变核心区守卫：提交前复核 system-prompt 标记区内容与启动快照一致
