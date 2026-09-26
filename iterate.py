@@ -53,6 +53,18 @@ def call_model(system_prompt: str, user_content: str) -> str:
     return result["choices"][0]["message"]["content"]
 
 
+def git_push():
+    """推送到GitHub远程仓库（失败不中断迭代，只记录警告）"""
+    result = subprocess.run(
+        ["git", "push", "origin", "master"],
+        capture_output=True, text=True
+    )
+    if result.returncode == 0:
+        print(" ✓ GitHub推送成功 ✅")
+    else:
+        print(f" ⚠️ GitHub推送失败（本地commit已保存）: {result.stderr.strip()}")
+
+
 def git_commit(message: str):
     """执行git add + commit"""
     subprocess.run(["git", "add", "-A"], check=True, capture_output=True)
@@ -141,6 +153,7 @@ def main():
     print(" ✓ 格式后处理完成（首部空行已清理，末尾换行已规范）")
     write_file(MAIN_FILE, new_content)
     git_commit(f"迭代 {timestamp}")
+    git_push()
 
     print(f"\n{'='*60}")
     print(f"文明OS 迭代完成 — {datetime.now().strftime('%Y%m%d_%H%M%S')}")
