@@ -27,6 +27,12 @@ echo ""
 echo "【公共版状态】"
 cd /home/v01/CUR-Agent/PROJECTS/civ-os/ || exit 1
 echo " HEAD: $(git rev-parse --short HEAD)"
+# 云端版本比对（双活协议·system-prompt §3 承诺段落）
+REM=$(timeout 30 git ls-remote origin master 2>/dev/null | cut -c1-7)
+LOC=$(git rev-parse --short HEAD)
+if [ -z "$REM" ]; then echo "  云端比对: 远端不可达（网络满足性未备，跳过）"
+elif [ "$REM" = "$LOC" ]; then echo "  云端比对: 已最新（$LOC）"
+else echo "  云端比对: ⚠️ 不一致 local=$LOC remote=$REM → 建议 bash scripts/sync_on_boot.sh --query-check"; fi
 echo " 节点文件: $(find nodes/ -name '*.md' | wc -l)个"
 
 echo ""
