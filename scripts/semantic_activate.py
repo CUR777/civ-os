@@ -5,6 +5,7 @@
 输出可供iterate.py处理的评论格式
 """
 import sys
+import re  # 20260927 补：abstract_source_title() 用了 re.sub 但从未导入，致整批激发 rc=1（NameError）
 import requests
 import json
 from pathlib import Path
