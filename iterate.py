@@ -127,11 +127,11 @@ def main():
     system_prompt = read_file(PROMPT_FILE)
     core_snapshot = get_immutable_core()  # 不可变核心区快照（防迭代旁路污染）
 
-    # 并行模式（--parallel N 启用，默认串行；共用 sglang 4并发吞吐上限≈600TPS 聚合）
-    parallel = 1
+    # 并行模式（默认4并行：sglang max-running-requests=16 实测4路真并行无排队，功耗与2路相同；--parallel N 可覆盖，0/1=串行）
+    parallel = 4
     if '--parallel' in sys.argv:
         try:
-            parallel = max(2, int(sys.argv[sys.argv.index('--parallel') + 1]))
+            parallel = max(1, int(sys.argv[sys.argv.index('--parallel') + 1]))
         except (IndexError, ValueError):
             parallel = 3
         print(f" 并行模式：{parallel} 个工作线程")
