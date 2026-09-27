@@ -71,6 +71,23 @@ def activate_chunked(text: str, chunk_size: int = 3000) -> str:
     return '\n'.join(results)
 
 
+def abstract_source_title(filename: str) -> str:
+    """来源标题抽象化：去个人笔记风格特征（坑11规范）。只保留汉字/字母/数字/连字符，去日期噪声与尾部编号。"""
+    name = re.sub(r'\.md$', '', filename)
+    # 中文日期（2026年6月9日/2026年9月21日）整体删除
+    name = re.sub(r'\d+年(\d+月)?(\d+日)?', ' ', name)
+    # 删除非「汉字/字母/数字/连字符/下划线」以外的全部字符
+    name = re.sub(r'[^\u4e00-\u9fffA-Za-z0-9\-_]+', ' ', name)
+    # 日期数字串：连字符式（2026-02-16）与空格分隔多段（08 11 48 184）
+    name = re.sub(r'(?:\d{1,4}-){1,3}\d{1,4}', ' ', name)
+    name = re.sub(r'(?:\b\d{1,4}[ ]){1,4}\d{1,4}\b', ' ', name)
+    # 剩余独立数字串与尾部编号
+    name = re.sub(r'\b\d{2,}\b', ' ', name)
+    name = re.sub(r'\s+', ' ', name).strip(' -_')
+    name = re.sub(r'^AI\s*报告\s*[:：-]*\s*', '', name)
+    return (name[:30].strip() or '知识库来源')
+
+
 def main():
     if len(sys.argv) < 2:
         print("用法: python3 semantic_activate.py <输入文件> [目标节点文件]")
@@ -95,7 +112,7 @@ def main():
         if target.exists():
             current = target.read_text(encoding='utf-8')
             ts = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            addition = f"\n\n> 来源激发：{src.name}（{ts}）\n\n{result}\n"
+            addition = f"\n\n> 来源激发：[{abstract_source_title(src.name)}]（{ts}）\n\n{result}\n"
             target.write_text(current.rstrip('\n') + '\n' + addition, encoding='utf-8')
             print(f"已追加到: {target.name}")
         else:
