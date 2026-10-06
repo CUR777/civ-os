@@ -11,7 +11,7 @@ from pathlib import Path
 
 MODEL = "pennyroyal"
 API_URL = "http://127.0.0.1:8001/v1/chat/completions"
-HUB_FILE = "文明OS-主页.md"
+HUB_FILE = "主题页/文明OS-主页.md"
 NODES_DIR = "nodes"
 PROMPT_FILE = "system-prompt.md"
 ITERATIONS_DIR = "iterations"
