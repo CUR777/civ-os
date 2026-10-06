@@ -13,7 +13,7 @@ MODEL = "pennyroyal"
 API_URL = "http://127.0.0.1:8001/v1/chat/completions"
 HUB_FILE = "主题页/文明OS-主页.md"
 NODES_DIR = "nodes"
-PROMPT_FILE = "system-prompt.md"
+PROMPT_FILE = "模板/system-prompt.md"
 ITERATIONS_DIR = "iterations"
 TIMEOUT = 900
 TEMPERATURE = 0.3
@@ -144,6 +144,23 @@ def main():
 
     print(f"[扫描] 共{len(candidates)}个文件")
 
+    
+def title_guard(orig: str, new: str, fname: str) -> bool:
+    """P1-08 防串写校验：首行标题必须与目标文件一致，否则中止写入（节点16串写案根治）。"""
+    ol=[l for l in orig.strip().splitlines() if l.strip()]
+    nl=[l for l in new.strip().splitlines() if l.strip()]
+    if not ol: return True
+    of=ol[0].strip(); nf=(nl[0] if nl else '')
+    if of.startswith('#'):
+        core=of.lstrip('#').strip()
+        # 文件名推导的核心题（去 front-matter 风格差异）：要求新首行仍含原标题主体
+        base=core.split('（')[0].split('(')[0][:18]
+        if base and base not in nf:
+            return False
+    if '系统提示词' in nf and '系统提示词' not in fname and 'system' not in fname.lower():
+        return False  # 串写黑名单：提示词标题出现在非提示词文件
+    return True
+
     def process_file(fpath):
         """单文件完整处理流程；返回 (更新路径|None, 日志行)。写回各自文件，线程安全。"""
         content = read_file(str(fpath))
@@ -156,6 +173,11 @@ def main():
             new_content = call_model(system_prompt, content)
         except Exception as e:
             return None, f" ❌ 模型调用失败: {fpath.name}: {e}"
+        if not title_guard(content, new_content, fpath.name):
+            err_path = Path(ITERATIONS_DIR) / f"crosswrite_{fpath.stem}_{ts_inner}.md"
+            write_file(str(err_path), new_content)
+            print(f" 🛑 防串写校验中止整批: {fpath.name} 首行与文件不符")
+            raise SystemExit(2)
         if not validate(new_content, str(fpath)):
             err_path = Path(ITERATIONS_DIR) / f"failed_{fpath.stem}_{ts_inner}.md"
             write_file(str(err_path), new_content)
