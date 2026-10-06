@@ -27,7 +27,9 @@
 - [monthly_external_sync.sh](%E6%A8%A1%E6%9D%BF/monthly_external_sync.sh) — !/bin/bash — `模板`
 - [龙虾-一键提示词-双活同步-20260927.txt](%E6%A8%A1%E6%9D%BF/%E9%BE%99%E8%99%BE-%E4%B8%80%E9%94%AE%E6%8F%90%E7%A4%BA%E8%AF%8D-%E5%8F%8C%E6%B4%BB%E5%90%8C%E6%AD%A5-20260927.txt) — 本地智能体一键提示词 — 云端/本地双活与开机·查询双重同步（20260927 v2·公共抽象版） — `模板`
 - [iterate.py](%E6%A8%A1%E6%9D%BF/iterate.py) — !/usr/bin/env python3 — `模板`
-- [system-prompt.md](%E6%A8%A1%E6%9D%BF/system-prompt.md) — 文明OS 迭代智能体 — 系统提示词 — `模板`
+
+- [README.md](%E6%A8%A1%E6%9D%BF/README.md) — 模板文件夹说明 — `模板`
+- [龙虾搜索规范.md](%E6%A8%A1%E6%9D%BF/%E9%BE%99%E8%99%BE%E6%90%9C%E7%B4%A2%E8%A7%84%E8%8C%83.md) — 四源检索 SOP — `模板`- [system-prompt.md](%E6%A8%A1%E6%9D%BF/system-prompt.md) — 文明OS 迭代智能体 — 系统提示词 — `模板`
 - [morning_check.sh](%E6%A8%A1%E6%9D%BF/morning_check.sh) — !/bin/bash — `模板`
 - [split_subnodes.py](%E6%A8%A1%E6%9D%BF/split_subnodes.py) — !/usr/bin/env python3 — `模板`
 - [semantic_activate.py](%E6%A8%A1%E6%9D%BF/semantic_activate.py) — !/usr/bin/env python3 — `模板`
