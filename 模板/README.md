@@ -25,3 +25,4 @@
 - semantic_activate.py / split_subnodes.py / sync_on_boot.sh / monthly_external_sync.sh / morning_check.sh — 辅助脚本
 - 龙虾-一键提示词-双活同步-20260927.txt — 会话接续模板
 - 龙虾搜索规范.md — 四源检索 SOP（P2-14）
+- [对话与迭代七范式-定稿.md](对话与迭代七范式-定稿.md) — D1~D7 对话结构/迭代周期/评论生产/篇幅/默认共识/激发特征/项目关系 定稿页
