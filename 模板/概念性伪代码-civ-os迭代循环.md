@@ -25,7 +25,7 @@ while True:
             framework.archive(imp, reason="未通过逻辑验证")
     # ⑦ 输出更新：更新所有 markdown 文件
     framework.export()
-    # ⑧ 等待下一轮输入（迭代间隔 9~30 秒/轮）
+    # ⑧ 等待下一轮输入（迭代间隔视场景而定：单会话轮次=秒级；版本迭代周期=日/月级；文明演化迭代=年/代际级）
     sleep(iteration_interval)
 ```
 
