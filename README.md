@@ -28,6 +28,8 @@
 ## 评论入口定义（P2-03 · 与模板/system-prompt.md 双处在册）
 
 评论=所有反馈数据入口（语音/文字/聊天/日记/外部参考），非传统评论；行首 `> 💬 ` 为唯一触发格式。
+
+**扩充版权威定义（1011 云端提示词任务 3.3 · #ZZ-P300-1011-A）**：评论入口=所有反馈数据的统一入口（项目记录/沟通记录/操作记录/实验数据/研究数据/行为数据/设备传感器数值/实际操作结果=智能实体对宇宙环境操作/反馈/变动之总和）；数据接入按浓度分层、非一刀切；系统内循环自评论=合法评论形式；数据接口扩展=常规节点层规划非公理层；全文=[[模板/system-prompt]] 高权重区 CMTIN 段。
 ## 检索降级定式（P2-06）
 
 每个新窗口先试原生搜索1次，断即转手动中转贴原文；不再切换搜索窗口。
@@ -81,7 +83,7 @@ civ-os/                            civ-os/
 - [.gitkeep](%E6%A8%A1%E6%9D%BF/.gitkeep) — .gitkeep
 - [README.md](%E6%A8%A1%E6%9D%BF/README.md) — 模板文件夹说明（P2-13 · 2026-10-06）
 - [README.md.bak-r5gap-1011-141x](%E6%A8%A1%E6%9D%BF/README.md.bak-r5gap-1011-141x) — 备份件·前代快照（原件见同目录同名去后缀）
-- [iterate.py](%E6%A8%A1%E6%9D%BF/iterate.py) — 迭代引擎：扫描主页/主题页/笔记库中含 > 💬 评论的文件→模型整合→守卫校验→commit/push（仓根执行 python3 模板/iterate.py）
+- [iterate.py](%E6%A8%A1%E6%9D%BF/iterate.py) — 迭代引擎：扫描主页/主题页/笔记库中含 > 💬 评论的文件→模型整合→守卫校验→commit/push（仓根执行 python3 模板/iterate.py）（v0.3.0 · 1011：32万token窗口/1800s超时/超长文分块整合=全局摘要+意群逐块；参数权威=[[笔记库/子节点02-01-iterate-py管道技术完整规范|子节点02-01]] P300 段）
 - [monthly_external_sync.sh](%E6%A8%A1%E6%9D%BF/monthly_external_sync.sh) — 月度外部同步兜底（STATE_FILE 防重/GitHub API 统计）
 - [morning_check.sh](%E6%A8%A1%E6%9D%BF/morning_check.sh) — 晨检：HEAD 比对/节点计数/评论入口统计
 - [semantic_activate.py](%E6%A8%A1%E6%9D%BF/semantic_activate.py) — 全量语义激发提示词生成（分块打印）
