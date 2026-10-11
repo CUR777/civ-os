@@ -9,10 +9,10 @@
 
 ## 2. 开机即同步（避让本地推理服务3-4min预热）
 - 开机后模型拉起约需3-4分钟。boot 模式先轮询就绪接口每10s一次，最长240s，检测到 iterate.py 运行中则退让；超时仍可执行仅依赖 git 的同步。
-- 脚本：bash scripts/sync_on_boot.sh（v2 含避让+网络满足性自检+defer逻辑），已加入 @reboot 开机自启。
+- 脚本：bash 模板/sync_on_boot.sh（v2 含避让+网络满足性自检+defer逻辑），已加入 @reboot 开机自启。
 
 ## 3. 联合查询时主动核验（核心）
-- 提问需联合检索私有库 CUR-OS 与公共库 civ-os 时，回答前主动执行：bash scripts/sync_on_boot.sh --query-check
+- 提问需联合检索私有库 CUR-OS 与公共库 civ-os 时，回答前主动执行：bash 模板/sync_on_boot.sh --query-check
 - 网络满足性自检：先探活远端，不满足则按本地已知配置补充后重试；仍离线则告知用户并跳过本次同步。
 - 一般情况云端超前且本地无未提交评论→直接 pull --ff-only；特殊情况（本地有未提交💬/迭代中/分叉）保留不拉取权利并明确告知。
 
