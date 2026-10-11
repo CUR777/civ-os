@@ -32,8 +32,8 @@ REM=$(timeout 30 git ls-remote origin master 2>/dev/null | cut -c1-7)
 LOC=$(git rev-parse --short HEAD)
 if [ -z "$REM" ]; then echo "  云端比对: 远端不可达（网络满足性未备，跳过）"
 elif [ "$REM" = "$LOC" ]; then echo "  云端比对: 已最新（$LOC）"
-else echo "  云端比对: ⚠️ 不一致 local=$LOC remote=$REM → 建议 bash scripts/sync_on_boot.sh --query-check"; fi
-echo " 节点文件: $(find nodes/ -name '*.md' | wc -l)个"
+else echo "  云端比对: ⚠️ 不一致 local=$LOC remote=$REM → 建议 bash 模板/sync_on_boot.sh --query-check"; fi
+echo " 节点文件: $(find 主题页/ 笔记库/ -maxdepth 1 -name '*.md' ! -name 'iterations-*' ! -name 'archive-*' | wc -l)个"
 
 echo ""
 echo "【HUB最新5行】"

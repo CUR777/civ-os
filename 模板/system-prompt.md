@@ -141,9 +141,9 @@ iterate.py的校验逻辑将检查此区域的完整性。
 **问题：** 本地Obsidian显示的是宿主机文件系统版本，云端显示的是GitHub origin/master 版本。若云端在本地关机期间有更新（场景A直接push），本地Obsidian将落后一代。
 
 **解法（本地开机自动同步）：**
-1. 塔机开机后，本地智能体或 scripts/sync_on_boot.sh 自动执行：git fetch origin → 比对 HEAD vs origin/master → 若云端超前则 git pull --ff-only 快进。
+1. 塔机开机后，本地智能体或 模板/sync_on_boot.sh 自动执行：git fetch origin → 比对 HEAD vs origin/master → 若云端超前则 git pull --ff-only 快进。
 2. Obsidian监听文件系统，pull 后自动刷新显示最新版，无需手动重记。
-3. 月度同步脚本 scripts/monthly_external_sync.sh 已实现"每月首次09:00检查时（含跨月补跑）+ STATE_FILE防重 + git fetch探活"，本机制为其在"每次开机"维度的补充，二者互补：一个保月度兜底，一个保每次开机即时。
+3. 月度同步脚本 模板/monthly_external_sync.sh 已实现"每月首次09:00检查时（含跨月补跑）+ STATE_FILE防重 + git fetch探活"，本机制为其在"每次开机"维度的补充，二者互补：一个保月度兜底，一个保每次开机即时。
 
 ### 4. 不确定时的保守策略
 
@@ -152,6 +152,6 @@ iterate.py的校验逻辑将检查此区域的完整性。
 
 ### 3.1 开机3-4分钟 sglang预热避让与查询时主动核验（20260927 v2 补充）
 
-**预热避让：** 本地塔机模型经 sglang 拉起约需 3-4 分钟，期间 CPU/GPU 满载。scripts/sync_on_boot.sh 在 boot 模式下默认先轮询就绪接口（每10s一次，最长240s）至模型就绪再执行 git fetch/pull，若检测到 iterate.py 运行中则主动退让，避免与迭代任务冲突。若超时未就绪仍继续执行仅依赖git的同步（不依赖模型）。
+**预热避让：** 本地塔机模型经 sglang 拉起约需 3-4 分钟，期间 CPU/GPU 满载。模板/sync_on_boot.sh 在 boot 模式下默认先轮询就绪接口（每10s一次，最长240s）至模型就绪再执行 git fetch/pull，若检测到 iterate.py 运行中则主动退让，避免与迭代任务冲突。若超时未就绪仍继续执行仅依赖git的同步（不依赖模型）。
 
-**查询时主动核验：** 本地智能体在正常开机后，若用户提问需联合检索私有库 CUR-OS 与公共库 civ-os（任一涉及文明OS的任务），应在回答前主动执行一次轻量核验（bash scripts/sync_on_boot.sh --query-check 或等效 git fetch origin 比对）：前提为网络满足——先探活远端，不满足则按本地配置补充网络满足性后重试；联网后若检测到云端 origin/master 超前本地 HEAD 且本地无未提交 > 💬 冲突，一般情况符合基本逻辑则直接 pull --ff-only 快进以保证本次回答基于最新版；但保留特殊情况不拉取的权利（本地有未提交的重要 > 💬、迭代正在进行、分叉需人工合并等），此时应明确告知用户并 defer 至手动处理。此机制与开机即同步互补：开机保即时，查询保最新。
+**查询时主动核验：** 本地智能体在正常开机后，若用户提问需联合检索私有库 CUR-OS 与公共库 civ-os（任一涉及文明OS的任务），应在回答前主动执行一次轻量核验（bash 模板/sync_on_boot.sh --query-check 或等效 git fetch origin 比对）：前提为网络满足——先探活远端，不满足则按本地配置补充网络满足性后重试；联网后若检测到云端 origin/master 超前本地 HEAD 且本地无未提交 > 💬 冲突，一般情况符合基本逻辑则直接 pull --ff-only 快进以保证本次回答基于最新版；但保留特殊情况不拉取的权利（本地有未提交的重要 > 💬、迭代正在进行、分叉需人工合并等），此时应明确告知用户并 defer 至手动处理。此机制与开机即同步互补：开机保即时，查询保最新。

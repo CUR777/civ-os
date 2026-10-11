@@ -1,7 +1,7 @@
 #!/bin/bash
 # 文明OS 月度外部评论整理脚本
 # 逻辑：每月1号执行；若跨月未执行（如未开机），下一次09:00检查时自动补跑
-# 手动触发：bash scripts/monthly_external_sync.sh manual
+# 手动触发：bash 模板/monthly_external_sync.sh manual
 
 LOG="/tmp/civos_monthly.log"
 STATE_FILE="/home/v01/CUR-Agent/PROJECTS/civ-os/.monthly_sync_state"

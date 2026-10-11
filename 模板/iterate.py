@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 文明OS 迭代脚本 v0.2.x（多文件版）
-扫描主页和nodes/目录下所有含💬评论的文件→逐一调用模型整合→更新文件→git commit→push
+扫描主页、主题页/与笔记库/（排除 iterations-/archive- 前缀快照）下所有含💬评论的文件→逐一调用模型整合→更新文件→git commit→push
 """
 
 import requests, json, subprocess, sys, os, re
@@ -12,9 +12,10 @@ from pathlib import Path
 MODEL = "pennyroyal"
 API_URL = "http://127.0.0.1:8001/v1/chat/completions"
 HUB_FILE = "主题页/文明OS-主页.md"
-NODES_DIR = "nodes"
+SCAN_DIRS = ["主题页", "笔记库"]  # A35两层重构：一级主题+平铺笔记库均参扫
+SNAPSHOT_PREFIXES = ("iterations-", "archive-")  # 历史快照冻结不参扫
 PROMPT_FILE = "模板/system-prompt.md"
-ITERATIONS_DIR = "iterations"
+ITERATIONS_DIR = "笔记库"  # A35：迭代快照落笔记库，iterations- 前缀标识
 TIMEOUT = 900
 TEMPERATURE = 0.3
 MAX_TOKENS = 300000
@@ -136,11 +137,13 @@ def main():
             parallel = 3
         print(f" 并行模式：{parallel} 个工作线程")
 
-    # 收集所有需要处理的文件（主页+nodes/下所有.md）
+    # 收集所有需要处理的文件（主页+主题页/+笔记库/，快照前缀除外）
     candidates = [Path(HUB_FILE)]
-    nodes_path = Path(NODES_DIR)
-    if nodes_path.exists():
-        candidates += sorted(nodes_path.rglob("*.md"))
+    for d in SCAN_DIRS:
+        dp = Path(d)
+        if dp.exists():
+            candidates += sorted(p for p in dp.rglob("*.md")
+                                 if not p.name.startswith(SNAPSHOT_PREFIXES))
 
     print(f"[扫描] 共{len(candidates)}个文件")
 
@@ -167,23 +170,23 @@ def title_guard(orig: str, new: str, fname: str) -> bool:
         if not has_comments(content):
             return None, f"  跳过（无评论）: {fpath.name}"
         ts_inner = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
-        backup = Path(ITERATIONS_DIR) / f"{fpath.stem}_{ts_inner}.md"
+        backup = Path(ITERATIONS_DIR) / f"iterations-{fpath.stem}_{ts_inner}.md"
         write_file(str(backup), content)
         try:
             new_content = call_model(system_prompt, content)
         except Exception as e:
             return None, f" ❌ 模型调用失败: {fpath.name}: {e}"
         if not title_guard(content, new_content, fpath.name):
-            err_path = Path(ITERATIONS_DIR) / f"crosswrite_{fpath.stem}_{ts_inner}.md"
+            err_path = Path(ITERATIONS_DIR) / f"iterations-crosswrite_{fpath.stem}_{ts_inner}.md"
             write_file(str(err_path), new_content)
             print(f" 🛑 防串写校验中止整批: {fpath.name} 首行与文件不符")
             raise SystemExit(2)
         if not validate(new_content, str(fpath)):
-            err_path = Path(ITERATIONS_DIR) / f"failed_{fpath.stem}_{ts_inner}.md"
+            err_path = Path(ITERATIONS_DIR) / f"iterations-failed_{fpath.stem}_{ts_inner}.md"
             write_file(str(err_path), new_content)
             return None, f" ⚠️ 校验失败，原文件保持不变: {fpath.name}"
         if len(new_content.encode('utf-8')) < len(content.encode('utf-8')) * 0.5:
-            err_path = Path(ITERATIONS_DIR) / f"failed_{fpath.stem}_{ts_inner}.md"
+            err_path = Path(ITERATIONS_DIR) / f"iterations-failed_{fpath.stem}_{ts_inner}.md"
             write_file(str(err_path), new_content)
             return None, f" ⚠️ 体积缩水超半，原文件保持不变: {fpath.name}"
         write_file(str(fpath), format_fix(new_content))

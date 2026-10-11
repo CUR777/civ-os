@@ -3,9 +3,9 @@
 # 职责：塔机每次开机时自动检测云端是否领先，落后则快进，确保Obsidian显示与GitHub一致
 # 设计：与 monthly_external_sync.sh 互补（月度兜底 vs 每次开机即时）；v2 新增 sglang 预热避让与网络满足性自检
 # 用法：
-# 开机自启： bash scripts/sync_on_boot.sh &
-# 龙虾主动核验：bash scripts/sync_on_boot.sh --query-check (用于联合查询 CUR-OS + civ-os 前)
-# 手动： bash scripts/sync_on_boot.sh --force
+# 开机自启： bash 模板/sync_on_boot.sh &
+# 龙虾主动核验：bash 模板/sync_on_boot.sh --query-check (用于联合查询 CUR-OS + civ-os 前)
+# 手动： bash 模板/sync_on_boot.sh --force
 LOG="/tmp/civos_sync_boot.log"
 REPO="/home/v01/CUR-Agent/PROJECTS/civ-os"
 if [ -n "$CIVOS_REPO" ]; then REPO="$CIVOS_REPO"; fi
@@ -126,7 +126,7 @@ if [ "$(git rev-parse "$BASE" 2>/dev/null)" = "$LOCAL" ]; then
       git status --short | tee -a "$LOG"
     fi
   else
-    echo "$(date '+%Y-%m-%d %H:%M:%S') [sync_on_boot] 本次 defer，不执行 pull。将在下次联合查询时由龙虾主动核验 (scripts/sync_on_boot.sh --query-check)" | tee -a "$LOG"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') [sync_on_boot] 本次 defer，不执行 pull。将在下次联合查询时由龙虾主动核验 (模板/sync_on_boot.sh --query-check)" | tee -a "$LOG"
     echo "[同步: 已defer因$REASON]"
   fi
 elif [ "$(git rev-parse "$BASE" 2>/dev/null)" = "$REMOTE" ]; then

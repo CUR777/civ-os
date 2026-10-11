@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 从顶层节点文件中提取模型生成的子节点内容，拆分为独立文件
-用法：python3 scripts/split_subnodes.py 01 02 03 04
+用法：python3 模板/split_subnodes.py 01 02 03 04
 """
 import re, sys
 from pathlib import Path
@@ -38,7 +38,7 @@ def split_node(node_num):
         parent_name = parent_glob[0].stem if parent_glob else f'节点{node_num}'
 
         header = f'## {title_text}\n\n'
-        header += f'**所属节点**：[[nodes/{parent_name}|{parent_name}]]\n'
+        header += f'**所属节点**：[[{parent_name}|{parent_name}]]\n'
         header += '**层级**：第2层\n\n---\n\n'
         filepath.write_text(header + body.strip() + '\n', encoding='utf-8')
         print(f'  已创建: {filepath.name} ({len(body)}字符)')
