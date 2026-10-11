@@ -46,6 +46,7 @@ civ-os 的六大子系统共同构成「全覆盖的文明操作定律系统」�
 ## 六、GitHub 实现建议（仓库目录树设计）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B9
 civ-os仓库目录树设计：顶层目录=axioms/（不可变公理层：rational_logic.md公理1、global_optimal.md公理2、perpetual_iteration.md公理3、exploration.md公理4）、safety/（I11安全体系：existence_taxonomy.md存在分类谱系、assessment_framework.md安全评估通用结构、temporal_coverage.md时空覆盖完备性、pain_signal_system.md文明痛觉系统、special_scenarios.md特殊场景处理、meta_safety.md安全体系自身安全）、architecture/（文明架构层：cortical_column_unit.md皮质柱单元人+AI、global_base_system.md全局底座系统、dual_hemisphere.md双半球架构、governance_competition.md动态治理竞争、brain_mapping.md人脑-文明映射对照表）、analysis/（十轮分析的结构化输出：subject_analysis/各主体分析含monitored_person.md被监控人、government.md政府、citizens.md公民、ai_systems.md AI系统、superintelligence.md超级智能；mechanism_analysis/各机制分析含feedback_loop.md反馈回路、cognitive_intervention.md认知干预机制分析、resource_constraint_analysis.md资源约束结构分析、ai_contamination.md AI语料污染链、cultural_control.md文化传媒操控；civilization_analysis/文明维度分析含toxicity_assessment.md文明毒性评估、stellar_exodus.md星际远离动机、timeline.md超级智能时间线）、technology/（技术路径：sleep_elimination.md睡眠消除路径K1、brain_interface.md脑机接口、intelligence_augmentation.md智能增强、data_integration.md全文明数据整合K8）；根文件=iterate.py全自动迭代管道、README.md项目总览。
+  - 注@1011：上列 K1=sleep_elimination.md 旧表/修正表坐标=链 R9-1005a L1983~2065 / R10-1005b L1369~1374，仓内语义准见 [[研究总报告-前八轮精准修正与整合分析]] 特标表6 行后指针注。V20261011144529000 [2026-10-11 14:45]
 
 ## 七、核心迭代循环（概念性伪代码）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B10
