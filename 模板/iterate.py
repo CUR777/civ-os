@@ -235,6 +235,12 @@ def format_fix(content):
     return content
 
 
+# 💬 防串写校验（#ZZ-ITERATE-ANTISHUFFLE，2026-10-12）：
+# 检查输出文件首行标题是否与输入文件路径匹配。
+# 不匹配→拒绝覆盖，记录错误日志（iterations-crosswrite_*.md），返回非零退出码（SystemExit(2)）。
+# 目的：防止不同节点的内容相互串写（历史上已发生节点16串写事件）。
+# 注：本校验即既有 P1-08 title_guard（1011 落地），本批核验四要素齐备=既有，按批文补注不重复建码。
+#     位置差异登记：现实现位于 validate（含IMMUTABLE比对）之前，批文要求在其后——两者均为写回前中止，功能等价，不动刀。
 def title_guard(orig: str, new: str, fname: str) -> bool:
     """P1-08 防串写校验：首行标题必须与目标文件一致，否则中止写入（节点16串写案根治）。"""
     ol=[l for l in orig.strip().splitlines() if l.strip()]
