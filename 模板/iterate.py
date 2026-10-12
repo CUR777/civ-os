@@ -209,9 +209,10 @@ def git_push():
         print(f" ⚠️ GitHub推送失败（本地commit已保存）: {result.stderr.strip()}")
 
 
-def validate(content, filename=""):
+def validate(content, filename="", original=""):
+    #iterate.pyV20261011173100000+VALFIX1012 公理Ⅰ校验改为「原文含则须保留」条件式——wiki_summary_layer 等本就无公理的文件不再被永拦（10-12 案根因=结构误报：母本公理Ⅰ=0 仍被要求输出含公理Ⅰ，健康整合输出 1427 行/0 评论余量/0.97 体积比被连续两误拦）
     checks = [
-        ("公理Ⅰ" in content or "节点" in filename, "公理Ⅰ或节点内容"),
+        ("公理Ⅰ" in content or "节点" in filename or "公理Ⅰ" not in original, "公理Ⅰ或节点内容"),
         (len(content) > 100, "内容不为空"),
     ]
     if HUB_FILE in filename or "主页" in filename:
@@ -272,7 +273,7 @@ def process_file(fpath, system_prompt):
         write_file(str(err_path), new_content)
         print(f" 🛑 防串写校验中止整批: {fpath.name} 首行与文件不符")
         raise SystemExit(2)
-    if not validate(new_content, str(fpath)):
+    if not validate(new_content, str(fpath), content):
         err_path = Path(ITERATIONS_DIR) / f"iterations-failed_{fpath.stem}_{ts_inner}.md"
         write_file(str(err_path), new_content)
         return None, f" ⚠️ 校验失败，原文件保持不变: {fpath.name}"
