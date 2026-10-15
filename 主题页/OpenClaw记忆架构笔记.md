@@ -22,3 +22,16 @@
 ## 其余表面
 #OpenClaw 记忆架构笔记（精确版）V20261009024548000+A4
 Dreaming（背景固化）、User model、Standing intents 各有独立文档，本笔记只覆盖主干。选择写入哪一面时按「信任级别+晋升闸门」定层。
+
+
+## 信息源清单
+> 通用必查源见 [[模板/主题页信息源清单规范|主题页信息源清单规范]]（GitHub/HF/arXiv/ModelScope/AIhot/境内/境外=不可遗漏底盘）
+
+### 本主题专属高优先来源
+| 来源 | URL/API | 适用场景 | 权威度 | 最后验证 |
+|------|---------|----------|--------|----------|
+| OpenClaw Docs | docs.openclaw.ai | 架构正身 | 极高 | 2026-10-15 |
+| GitHub openclaw | github.com/openclaw/openclaw | 源码 | 极高 | 2026-10-15 |
+| SQLite FTS5 | sqlite.org/fts5.html | 索引层正身 | 极高 | 2026-10-15 |
+
+（B36 2026-10-15 建段 · 新源发现与退役规则见规范件 §d）

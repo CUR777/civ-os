@@ -77,3 +77,16 @@
 #CUR宇宙模态-文明OS社会演化模拟V20261012134224563+I3
 
 **居民层模型选择（B14-L 核查补落 1012，批文[3]）**：推荐=**星火 X2.5-4B > 盘古 Pro MoE 72B**。理由：显存占用小 / 最新架构 / 智能体专项优化（云端转述基准 τ³-bench 30.4、MCP-Atlas 54.6——权威性=中，境内公开腿未直接命中该两分数，候实测复核）。**盘古 72B 唯一用途**=验证 300i 硬件/软件栈基准（官方有 4 卡 201TPS 数据可对照，见私有件澄清条）。vllm-ascend 官方路径=Modelers 魔乐社区 + quay.io/ascend/vllm-ascend + XHToken/Spark-plugin；**不走 GGUF**（昇腾 NPU 上多数量化格式 2TPS 级别不可用）。
+
+
+## 信息源清单
+> 通用必查源见 [[模板/主题页信息源清单规范|主题页信息源清单规范]]（GitHub/HF/arXiv/ModelScope/AIhot/境内/境外=不可遗漏底盘）
+
+### 本主题专属高优先来源
+| 来源 | URL/API | 适用场景 | 权威度 | 最后验证 |
+|------|---------|----------|--------|----------|
+| Santa Fe Institute | santafe.edu | 复杂系统模拟正身 | 极高 | 2026-10-15 |
+| Mesa(ABM框架) | github.com/projectmesa/mesa | Agent 仿真载具 | 高 | 2026-10-15 |
+| arXiv cs.SI | arxiv.org/list/cs.SI/recent | 社会模拟 | 高 | 2026-10-15 |
+
+（B36 2026-10-15 建段 · 新源发现与退役规则见规范件 §d）
