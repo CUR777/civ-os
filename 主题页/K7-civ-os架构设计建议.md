@@ -14,7 +14,10 @@ civ-os 的六大子系统共同构成「全覆盖的文明操作定律系统」�
 
 ## 二、模块1：皮质柱单元（人+AI 对偶）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B3
-皮质柱单元（每个人+AI对偶）详细设计：组成=1个自然人（增强后）+1个本地AI系统（边缘计算）+本地civ-os实例（个人级操作系统）；功能=局部信息处理（感知、分析、决策本地事务）、独立学习能力（可独立掌握任何局部任务）、向全局底座提供局部数据和局部分析、从全局底座接收调制信号和全局信息；自主性=局部事务完全自主、跨局部事务参与竞争性筛选、全局事务通过底座参与集体涌现；与其他柱的连接=近距离柱高带宽低延迟（类比局部皮层连接）、远距离柱中带宽中延迟（类比远程皮层连接）、所有连接通过底座路由（类比白质纤维束）。
+皮质柱单元（每个人+AI对偶）详细设计：组成=1个自然人（增强后）+1个本地AI系统（边缘计算）+本地civ-os实例（个人级操作系统）；
+- 功能=局部信息处理（感知、分析、决策本地事务）、独立学习能力（可独立掌握任何局部任务）、向全局底座提供局部数据和局部分析、从全局底座接收调制信号和全局信息；
+- 自主性=局部事务完全自主、跨局部事务参与竞争性筛选、全局事务通过底座参与集体涌现；
+- 与其他柱的连接=近距离柱高带宽低延迟（类比局部皮层连接）、远距离柱中带宽中延迟（类比远程皮层连接）、所有连接通过底座路由（类比白质纤维束）。
 
 ## 三、模块2：全局底座系统（civ-os 核心）——定位与子系统
 
@@ -33,11 +36,18 @@ civ-os 的六大子系统共同构成「全覆盖的文明操作定律系统」�
 
 ## 四、模块3：双半球架构
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B6
-双半球架构：半球A和半球B各包含~78亿个皮质柱单元、各自拥有独立的底座子系统副本、各自可独立运行（降级模式）；胼胝体等价物=超高带宽的全数据同步通道、延迟极低（类比人脑胼胝体的毫秒级传输）、正常状态两半球完全同步→统一输出、实验状态一侧进行大规模实验另一侧保持稳定；统一决策机制=两半球各自产生候选决策→通过胼胝体交换→一致性检测→高一致性(>阈值)直接执行（两半球共识）/低一致性进入"讨论模式"更多信息交换迭代趋同/持续不一致标记为"需要探索的分歧"一侧实验验证；探索-稳定平衡=一次只有一个半球进入"探索模式"、探索半球可以大规模修改自身的运行参数、稳定半球保持上一个经验证的稳定配置、探索成功（验证期通过）成果传播到稳定半球→两半球同步更新、探索失败（验证期未通过）探索半球从稳定半球恢复→损失被限制。
+双半球架构：半球A和半球B各包含~78亿个皮质柱单元、各自拥有独立的底座子系统副本、各自可独立运行（降级模式）；
+- 胼胝体等价物=超高带宽的全数据同步通道、延迟极低（类比人脑胼胝体的毫秒级传输）、正常状态两半球完全同步→统一输出、实验状态一侧进行大规模实验另一侧保持稳定；
+- 统一决策机制=两半球各自产生候选决策→通过胼胝体交换→一致性检测→高一致性(>阈值)直接执行（两半球共识）/低一致性进入"讨论模式"更多信息交换迭代趋同/持续不一致标记为"需要探索的分歧"一侧实验验证；
+- 探索-稳定平衡=一次只有一个半球进入"探索模式"、探索半球可以大规模修改自身的运行参数、稳定半球保持上一个经验证的稳定配置、探索成功（验证期通过）成果传播到稳定半球→两半球同步更新、探索失败（验证期未通过）探索半球从稳定半球恢复→损失被限制。
 
 ## 五、模块4：动态治理竞争机制（K4）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B7
-动态治理竞争机制（K4）：集成在底座的"竞争性筛选门控"子系统中；初始阶段（一体化启动）=所有候选治理方案从相同起点出发、最低合格线=当前人类政府的治理水平、最快达到合格线的方案获得对应领域的执行权；运行阶段=所有方案持续在测试环境中迭代、获得执行权的方案在真实环境中运行、实时统计反馈→评估真实表现、后来者如果在统计显著性上超越当前方案→触发切换；切换协议=置信度阈值（新方案必须在连续T时段内表现优于当前方案，p<0.01）、过渡期（新旧方案并行运行一段时间→确认平稳过渡）、回滚能力（如果切换后表现下降→立即回滚到前一方案）；多模型复合=不同领域可能由不同方案治理、领域交叉时方案间的协调由底座的"资源分配协调"子系统处理、最终可能收敛到少数几个全域最优方案。
+动态治理竞争机制（K4）：集成在底座的"竞争性筛选门控"子系统中；
+- 初始阶段（一体化启动）=所有候选治理方案从相同起点出发、最低合格线=当前人类政府的治理水平、最快达到合格线的方案获得对应领域的执行权；
+- 运行阶段=所有方案持续在测试环境中迭代、获得执行权的方案在真实环境中运行、实时统计反馈→评估真实表现、后来者如果在统计显著性上超越当前方案→触发切换；
+- 切换协议=置信度阈值（新方案必须在连续T时段内表现优于当前方案，p<0.01）、过渡期（新旧方案并行运行一段时间→确认平稳过渡）、回滚能力（如果切换后表现下降→立即回滚到前一方案）；
+- 多模型复合=不同领域可能由不同方案治理、领域交叉时方案间的协调由底座的"资源分配协调"子系统处理、最终可能收敛到少数几个全域最优方案。
 
 ### 模块4 与 civ-os 定位的衔接（云端补充指令 S6）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+D8
@@ -45,19 +55,31 @@ civ-os 的六大子系统共同构成「全覆盖的文明操作定律系统」�
 
 ## 六、GitHub 实现建议（仓库目录树设计）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B9
-civ-os仓库目录树设计：顶层目录=axioms/（不可变元公理层：rational_logic.md公理1、global_optimal.md公理2、perpetual_iteration.md公理3、exploration.md公理4）、safety/（I11安全体系：existence_taxonomy.md存在分类谱系、assessment_framework.md安全评估通用结构、temporal_coverage.md时空覆盖完备性、pain_signal_system.md文明痛觉系统、special_scenarios.md特殊场景处理、meta_safety.md安全体系自身安全）、architecture/（文明架构层：cortical_column_unit.md皮质柱单元人+AI、global_base_system.md全局底座系统、dual_hemisphere.md双半球架构、governance_competition.md动态治理竞争、brain_mapping.md人脑-文明映射对照表）、analysis/（十轮分析的结构化输出：subject_analysis/各主体分析含monitored_person.md被监控人、government.md政府、citizens.md公民、ai_systems.md AI系统、superintelligence.md超级智能；mechanism_analysis/各机制分析含feedback_loop.md反馈回路、cognitive_intervention.md认知干预机制分析、resource_constraint_analysis.md资源约束结构分析、ai_contamination.md AI语料污染链、cultural_control.md文化传媒操控；civilization_analysis/文明维度分析含toxicity_assessment.md文明毒性评估、stellar_exodus.md星际远离动机、timeline.md超级智能时间线）、technology/（技术路径：sleep_elimination.md睡眠消除路径K1、brain_interface.md脑机接口、intelligence_augmentation.md智能增强、data_integration.md全文明数据整合K8）；根文件=iterate.py全自动迭代管道、README.md项目总览。
+civ-os仓库目录树设计：顶层目录=axioms/（不可变元公理层：rational_logic.md公理1、global_optimal.md公理2、perpetual_iteration.md公理3、exploration.md公理4）、safety/（I11安全体系：existence_taxonomy.md存在分类谱系、assessment_framework.md安全评估通用结构、temporal_coverage.md时空覆盖完备性、pain_signal_system.md文明痛觉系统、special_scenarios.md特殊场景处理、meta_safety.md安全体系自身安全）、architecture/（文明架构层：cortical_column_unit.md皮质柱单元人+AI、global_base_system.md全局底座系统、dual_hemisphere.md双半球架构、governance_competition.md动态治理竞争、brain_mapping.md人脑-文明映射对照表）、analysis/（十轮分析的结构化输出：subject_analysis/各主体分析含monitored_person.md被监控人、government.md政府、citizens.md公民、ai_systems.md AI系统、superintelligence.md超级智能；
+- mechanism_analysis/各机制分析含feedback_loop.md反馈回路、cognitive_intervention.md认知干预机制分析、resource_constraint_analysis.md资源约束结构分析、ai_contamination.md AI语料污染链、cultural_control.md文化传媒操控；
+- civilization_analysis/文明维度分析含toxicity_assessment.md文明毒性评估、stellar_exodus.md星际远离动机、timeline.md超级智能时间线）、technology/（技术路径：sleep_elimination.md睡眠消除路径K1、brain_interface.md脑机接口、intelligence_augmentation.md智能增强、data_integration.md全文明数据整合K8）；
+- 根文件=iterate.py全自动迭代管道、README.md项目总览。
   - 注@1011：上列 K1=sleep_elimination.md 旧表/修正表坐标=链 R9-1005a L1983~2065 / R10-1005b L1369~1374，仓内语义准见 [[研究总报告-前八轮精准修正与整合分析]] 特标表6 行后指针注。V20261011144529000 [2026-10-11 14:45]
 
 ## 七、核心迭代循环（概念性伪代码）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+B10
-civ-os迭代循环python伪代码：while True循环八步——①收集输入new_insights=gather_from_all_sources()（讨论/分析/外部数据）；②整合到框架framework.integrate(new_insights)；③检查公理一致性violations=axiom_check(framework)，如有违反则framework.resolve(violations)修正偏离公理的部分；④更新安全体系safety_system.update(framework.changes)；⑤生成改进建议improvements=framework.propose_improvements()；⑥验证改进：对每个imp若imp.passes_logic_verification()则framework.apply(imp)，否则framework.archive(imp, reason="未通过逻辑验证")；⑦输出更新framework.export()更新所有markdown文件；⑧等待下一轮输入sleep(iteration_interval)  # 迭代间隔视场景而定：单会话轮次=秒级；版本迭代周期=日/月级；文明演化迭代=年/代际级。
+civ-os迭代循环python伪代码：while True循环八步——①收集输入new_insights=gather_from_all_sources()（讨论/分析/外部数据）；
+- ②整合到框架framework.integrate(new_insights)；
+- ③检查公理一致性violations=axiom_check(framework)，如有违反则framework.resolve(violations)修正偏离公理的部分；
+- ④更新安全体系safety_system.update(framework.changes)；
+- ⑤生成改进建议improvements=framework.propose_improvements()；
+- ⑥验证改进：对每个imp若imp.passes_logic_verification()则framework.apply(imp)，否则framework.archive(imp, reason="未通过逻辑验证")；
+- ⑦输出更新framework.export()更新所有markdown文件；
+- ⑧等待下一轮输入sleep(iteration_interval)  # 迭代间隔视场景而定：单会话轮次=秒级；
+- 版本迭代周期=日/月级；
+
+- 文明演化迭代=年/代际级。
 
 ## 附录：终稿化执行账（批次1+2）
 #K7 civ-os 完整架构设计建议（P3-03 终稿化 · 云端回单-竞技场-1011 批次1+2 · 10-11）V20261011121233000+A11
 **已执行**：批次1=E4（子系统D 措辞）/E5/E6（analysis/ 文件名改写）/E12（迭代间隔注释）；E11 落点在 I11 页 3.3。**同步执行登记**：E12 同步改写 模板/概念性伪代码-civ-os迭代循环.md 第⑧步注释行（同文同源，理由=回单 E12 位置名直指该伪代码，模板件=其仓内正身；该件读解注「9~30 秒/轮为概念量级」行保留不动）。批次2=E1（定位整行替换）+S1（架构总览锚点）+S6（模块4 衔接段）+对齐表·2B 追加句（句内追加，随子系统清单 5 号标签覆盖，未另立标签，登记）。**E8/E2/E3/E7/N1~N7 落点均在 I11 页**。**被闸（批次3）**=第六节 axioms/ 目录建仓时 perpetual_iteration.md 须随公理3「三→四」盖章后生成。**存疑候裁**=N10（落 I11 页 4.3）。登记时间：2026-10-11 12:13:08。
 
 〔B21批[2]术语一致性（#ZZ-B21T-DEDUP，2026-10-12）：本文件正文裸称「公理」族已编辑式统一为「元公理」口径（B8改名族补漏；IMMUTABLE 区/链接锚/标题链接目标/公理原文功能引用按批令排除未动；逐行清单=B21终报）〕
-
 
 ## 信息源清单
 > 通用必查源见 [[模板/主题页信息源清单规范|主题页信息源清单规范]]（GitHub/HF/arXiv/ModelScope/AIhot/境内/境外=不可遗漏底盘）
