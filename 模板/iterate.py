@@ -18,6 +18,14 @@ from pathlib import Path
 
 MODEL = "pennyroyal"
 API_URL = "http://127.0.0.1:8001/v1/chat/completions"
+#iterate.pyV20261015191510891+CLOUD
+# 云端引擎替代运行模式说明（1015 昨晚聊天消化补落 · #ZZ-D18DIGEST-1015-B · 只加说明，零逻辑改动）：
+# 上行 API_URL=本地 sglang 端点，云端环境够不到此地址，不改本值。
+# 云端模式下：云端智能体读本文件的管道规则（SCAN_DIRS/SNAPSHOT_PREFIXES/title_guard/缩水守卫/IMMUTABLE 校验）
+# 与 模板/system-prompt.md 后，智能体本身充当整合模型——逐文件读原文+💬评论→直接编辑文件→
+# 自检（首行标题一致/体积缩水>50%拒绝/IMMUTABLE 切片全等）→会话分支 commit+push→PR 过 push 门终检。
+# 启用前提：①云端模型能力明确高于本地在用模型；②自然人明确授权本批；③GitHub 通道实测可用。
+# 本地直跑本脚本照常=通道断档/大规模连续整合的兜底腿。规范正文见 模板/给云端智能体的提示词-衔接通用版.md Ⅱ型条款。
 HUB_FILE = "主题页/文明OS-主页.md"
 SCAN_DIRS = ["主题页", "笔记库"]  # A35两层重构：一级主题+平铺笔记库均参扫
 SNAPSHOT_PREFIXES = ("iterations-", "archive-")  # 历史快照冻结不参扫
