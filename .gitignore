@@ -6,3 +6,6 @@ __pycache__/
 *.bak.*
 .backups/
 .monthly_sync_state
+
+# 1015 B52 终检：历史上 *.bak.* 只匹配点后缀，实际命名 .bak-<批标>-<HHMM> 全漏网（B36~B50 已致 42 枚 .bak-* 随 git add -A 入跟踪，案录见私有侧 corrections-log）；补横杠规则，新增 .bak 一律本地保险件不入库 #ZZ-BATCH52-1015-CR
+*.bak-*
