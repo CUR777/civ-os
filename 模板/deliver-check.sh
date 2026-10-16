@@ -31,3 +31,5 @@ C2=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$U")
 [ "$C2" = 200 ] && say OK "viewer 壳 200" || say FAIL "viewer HTTP=$C2"
 curl -s --max-time 10 "$BASE/viewer.html" | grep -q 'marked' && say OK "壳含渲染腿" || say FAIL "壳页缺渲染腿"
 if [ $FAILS -eq 0 ]; then echo GATE-PASS; echo "FINAL_URL<<$U>>"; else echo "GATE-FAIL(禁投)"; exit 1; fi
+
+# evidence: 来源=1016 #ZZ-B55-LINKGATE-1016 假交付再犯案加固；五检闸 1016 实测 GATE-PASS rc=0 + 闸测闸自修案（say() bug 首跑拦出）@2026-10-16
