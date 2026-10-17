@@ -21,11 +21,11 @@ grep -a "FAIL|" /tmp/civ-replay23b.log 2>/dev/null || echo " （无）"
 
 echo ""
 echo "【私有版激发总量】"
-grep -ra "^> 💬" /home/v01/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/私有版节点/ | wc -l
+grep -ra "^> 💬" $HOME/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/私有版节点/ | wc -l
 
 echo ""
 echo "【公共版状态】"
-cd /home/v01/CUR-Agent/PROJECTS/civ-os/ || exit 1
+cd $HOME/CUR-Agent/PROJECTS/civ-os/ || exit 1
 echo " HEAD: $(git rev-parse --short HEAD)"
 # 云端版本比对（双活协议·system-prompt §3 承诺段落）
 REM=$(timeout 30 git ls-remote origin master 2>/dev/null | cut -c1-7)
@@ -37,7 +37,7 @@ echo " 节点文件: $(find 主题页/ 笔记库/ -maxdepth 1 -name '*.md' ! -na
 
 echo ""
 echo "【HUB最新5行】"
-tail -5 /home/v01/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/HUB-文明OS簇.md
+tail -5 $HOME/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/HUB-文明OS簇.md
 
 echo ""
 echo "【OpenClaw cron 守门】"

@@ -7,7 +7,7 @@
 # 龙虾主动核验：bash 模板/sync_on_boot.sh --query-check (用于联合查询 CUR-OS + civ-os 前)
 # 手动： bash 模板/sync_on_boot.sh --force
 LOG="/tmp/civos_sync_boot.log"
-REPO="/home/v01/CUR-Agent/PROJECTS/civ-os"
+REPO="${CIVOS_REPO:-$HOME/CUR-Agent/PROJECTS/civ-os}"
 if [ -n "$CIVOS_REPO" ]; then REPO="$CIVOS_REPO"; fi
 if [ ! -d "$REPO/.git" ]; then REPO="$(cd "$(dirname "$0")/.." && pwd)"; fi
 MODE="${1:-boot}"
@@ -42,17 +42,21 @@ fi
 # 设计：云端对话结晶由本人手动复制进手机专用收件箱 $RM2_VAULT（默认 /sdcard/Download/civos-inbox，
 #       可在 Obsidian 中将其指为 vault 子目录）；本腿按时间戳提取上次提取后的全部增量 .md，输出「待排任务清单」。
 if [ "$MODE" = "--extract-increments" ]; then
-  DEV="${RM2_SERIAL:-AIQCHEF64D6X4T4L}"
+  [ -f "$HOME/.civos_private.env" ] && . "$HOME/.civos_private.env"
+  if [ -z "${RM2_SERIAL:-}" ] && [ -z "${RM2_ADDR:-}" ]; then
+    echo "⚠️ 红米2号端点未配置（RM2_SERIAL/RM2_ADDR 见 ~/.civos_private.env），跳过增量提取" | tee -a "$LOG"; exit 0
+  fi
+  DEV="${RM2_SERIAL:-}"
   VAULT="${RM2_VAULT:-/sdcard/Download/civos-inbox}"
   STATE="$HOME/.civos_rm2_extract_state"
   SINCE="${2:-$(cat "$STATE" 2>/dev/null || echo 0)}"
   command -v adb >/dev/null 2>&1 || export PATH="$PATH:$HOME/Android/Sdk/platform-tools"
   if ! adb -s "$DEV" get-state >/dev/null 2>&1; then
-    adb connect 192.168.2.100:5555 >/dev/null 2>&1
-    DEV="192.168.2.100:5555"
+    adb connect "$RM2_ADDR" >/dev/null 2>&1
+    DEV="$RM2_ADDR"
   fi
   if ! adb -s "$DEV" get-state >/dev/null 2>&1; then
-    echo "❌ 红米2号不可达（USB序列或 192.168.2.100:5555 均失败）；手机重启后需先经有线腿 adb tcpip 5555 重铸" | tee -a "$LOG"; exit 1
+    echo "❌ 红米2号不可达（USB序列或 $RM2_ADDR 均失败）；手机重启后需先经有线腿 adb tcpip 5555 重铸" | tee -a "$LOG"; exit 1
   fi
   NOW=$(date +%s)
   INCR=$(adb -s "$DEV" shell "find '$VAULT' -name '*.md' -type f -exec stat -c '%Y %n' {} \; 2>/dev/null" | tr -d '\r' | awk -v s="$SINCE" '$1>s' | sort -n)

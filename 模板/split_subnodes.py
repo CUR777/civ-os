@@ -6,7 +6,7 @@
 import re, sys
 from pathlib import Path
 
-nodes_dir = Path('/home/v01/CUR-Agent/PROJECTS/civ-os/nodes')
+nodes_dir = Path.home() / 'CUR-Agent/PROJECTS/civ-os/nodes'
 
 
 def split_node(node_num):

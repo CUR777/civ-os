@@ -4,7 +4,7 @@
 # 手动触发：bash 模板/monthly_external_sync.sh manual
 
 LOG="/tmp/civos_monthly.log"
-STATE_FILE="/home/v01/CUR-Agent/PROJECTS/civ-os/.monthly_sync_state"
+STATE_FILE="$HOME/CUR-Agent/PROJECTS/civ-os/.monthly_sync_state"
 MANUAL=${1:-""}
 
 echo "$(date '+%Y-%m-%d %H:%M') 月度外部同步检查" >> $LOG
@@ -28,7 +28,7 @@ fi
 if [ "$SHOULD_RUN" = "true" ]; then
   echo "$(date '+%Y-%m-%d %H:%M') 开始月度外部评论整理..." >> $LOG
 
-  cd /home/v01/CUR-Agent/PROJECTS/civ-os/ || exit 1
+  cd $HOME/CUR-Agent/PROJECTS/civ-os/ || exit 1
 
   # 1. 拉取GitHub最新状态（只fetch不动工作区）
   git fetch origin >> $LOG 2>&1
@@ -44,12 +44,12 @@ if [ "$SHOULD_RUN" = "true" ]; then
 
   # 3. 私有版积累量统计（实测口径）
   PRIV_COUNT=$(grep -ra "^> 💬" \
-    /home/v01/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/私有版节点/ \
+    $HOME/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/私有版节点/ \
     2>/dev/null | wc -l)
   echo "$(date '+%Y-%m-%d %H:%M') 私有版当前激发量：${PRIV_COUNT}条" >> $LOG
 
   # 4. 更新HUB记录
-  cat >> "/home/v01/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/HUB-文明OS簇.md" << HUBEOF
+  cat >> "$HOME/CUR-Agent/knowledge-base/obsidian-import/文明OS项目簇/HUB-文明OS簇.md" << HUBEOF
 
 ## 月度外部同步（$(date '+%Y年%m月')）
 - 执行时间：$(date '+%Y-%m-%d %H:%M')
