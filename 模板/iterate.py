@@ -85,6 +85,9 @@ def write_file(path, content):
     Path(path).write_text(content, encoding="utf-8")
 
 
+# 待集成注记：generate_timestamps() 当前版本无调用方（定义保留，暂未接入管道）。
+# 用途=统一生成落盘件双时间戳（created_at=UTC毫秒Z / version_tag=北京时间V%Y%m%d%H%M%S+），
+# 供 front-matter 类落盘件使用；后续需要时在此接入，接入前不动刀。
 def generate_timestamps():
     """生成ISO时间戳和宿主风格版本标识（created_at用UTC毫秒Z；version_tag用北京时间+08:00）"""
     from datetime import datetime, timezone, timedelta
@@ -352,8 +355,9 @@ def main():
 
     if changed_files:
         # 不可变核心区守卫：提交前复核 system-prompt 标记区内容与启动快照一致
-        if core_snapshot is not None and get_immutable_core() != core_snapshot:
-            print(" ❌ 守卫触发：system-prompt 不可变核心区在本轮迭代中被改动，已回滚该文件，提交中止")
+        if core_snapshot is None or get_immutable_core() != core_snapshot:
+            reason = "IMMUTABLE 标记缺失（无法建立基线）" if core_snapshot is None else "不可变核心区在本轮迭代中被改动"
+            print(f" ❌ 守卫触发：system-prompt {reason}，已回滚该文件，提交中止")
             subprocess.run(["git", "checkout", "--", PROMPT_FILE], capture_output=True)
             sys.exit(1)
         print(f"\n[提交] {len(changed_files)}个文件已更新")
